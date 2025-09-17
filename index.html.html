@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Katalog Rempah Nusantara</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin:0; background:#faf7f3; color:#222;}
+    .container {max-width:800px; margin:32px auto; padding:20px;}
+    header {text-align:center; margin-bottom:20px;}
+    header h1 {color:#8B4513; margin:0;}
+    .grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px;}
+    .card {background:#fff; border-radius:12px; padding:16px; box-shadow:0 6px 18px rgba(0,0,0,0.06); text-align:center;}
+    .card h3 {margin-top:0; color:#8B4513;}
+    .btn {margin-top:10px; padding:10px 14px; background:#8B4513; color:#fff; border:none; border-radius:8px; cursor:pointer;}
+    footer {margin-top:26px; padding:18px; border-radius:12px; background:#fff; text-align:center; font-size:14px; color:#555;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🌿 Katalog Rempah Nusantara</h1>
+      <p>Segar • Berkualitas • Siap Kirim — Pesan langsung via WhatsApp</p>
+    </header>
+
+    <section class="grid" id="products">
+      <article class="card">
+        <h3>Kelapa</h3>
+        <button class="btn" onclick="order('Kelapa')">Pesan via WA</button>
+      </article>
+      <article class="card">
+        <h3>Kayu Manis</h3>
+        <button class="btn" onclick="order('Kayu Manis')">Pesan via WA</button>
+      </article>
+      <article class="card">
+        <h3>Cengkeh</h3>
+        <button class="btn" onclick="order('Cengkeh')">Pesan via WA</button>
+      </article>
+      <article class="card">
+        <h3>Pala</h3>
+        <button class="btn" onclick="order('Pala')">Pesan via WA</button>
+      </article>
+      <article class="card">
+        <h3>Kemiri</h3>
+        <button class="btn" onclick="order('Kemiri')">Pesan via WA</button>
+      </article>
+    </section>
+
+    <footer>
+      <p><b>Toko Rempah Nusantara</b></p>
+      <p>WA: <a href="https://wa.me/6282229149123" target="_blank">082229149123</a></p>
+      <p>Alamat: Perumahan Graha Kota D11/3, Sidoarjo, Jawa Timur</p>
+    </footer>
+  </div>
+
+  <script>
+    function order(item){
+      const wa = '6282229149123';
+      const text = encodeURIComponent('Halo, saya mau pesan: ' + item);
+      window.open('https://wa.me/' + wa + '?text=' + text, '_blank');
+    }
+  </script>
+</body>
+</html>
