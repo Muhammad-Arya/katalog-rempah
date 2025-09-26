@@ -12,20 +12,20 @@
       --bg:#fefcf9;
       --muted:#6b6b6b;
     }
-    *{box-sizing:border-box}
     body{font-family:'Poppins',sans-serif;margin:0;background:var(--bg);color:#222}
     .hero{
       background: linear-gradient(0deg, rgba(0,0,0,0.20), rgba(0,0,0,0.20)), url('images/hero.jpg');
       background-size:cover;background-position:center;
       padding:80px 20px;text-align:center;color:#fff;
-      box-shadow: inset 0 -80px 80px rgba(0,0,0,0.08);
     }
     .hero h1{font-size:40px;margin:0 0 8px;text-shadow:0 6px 18px rgba(0,0,0,0.25)}
     .hero p{margin:0;color:rgba(255,255,255,0.9)}
+    .lang-switch{margin-top:16px}
+    .lang-switch button{margin:0 5px;padding:6px 12px;border:none;border-radius:6px;cursor:pointer;font-weight:600}
     .container{max-width:1100px;margin:32px auto;padding:20px}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
-    .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 20px rgba(12,12,12,0.06);transition:transform .22s,box-shadow .22s}
-    .card:hover{transform:translateY(-8px);box-shadow:0 14px 40px rgba(12,12,12,0.12)}
+    .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 20px rgba(12,12,12,0.06);transition:transform .22s}
+    .card:hover{transform:translateY(-8px)}
     .card .media{width:100%;height:180px;object-fit:cover;display:block}
     .card .body{padding:14px}
     .card h3{margin:0 0 10px;color:var(--accent);font-size:20px}
@@ -34,31 +34,31 @@
     .btn-wa{background:var(--wa);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;display:inline-block}
     .btn-wa:hover{background:#1ebe5a}
     .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#e6f7ea;color:#0b6d3a;font-weight:600;font-size:13px}
-    footer{margin-top:36px;padding:28px;background:var(--accent);color:#fff;text-align:center;border-top-left-radius:8px;border-top-right-radius:8px}
+    footer{margin-top:36px;padding:28px;background:var(--accent);color:#fff;text-align:center}
     footer a{color:#fff;text-decoration:underline;font-weight:600}
-    /* Responsive spacing */
-    @media(max-width:520px){.hero{padding:46px 16px}.hero h1{font-size:28px}}
   </style>
 </head>
 <body>
 
-  <!-- HERO: gunakan images/hero.jpg (bisa sama dengan foto rempah umum) -->
   <header class="hero" role="banner">
-    <h1>🌿 Katalog Rempah Nusantara</h1>
-    <p>Segar • Berkualitas • Siap Kirim — Pesan langsung lewat WhatsApp</p>
+    <h1 id="title">🌿 Katalog Rempah Nusantara</h1>
+    <p id="subtitle">Segar • Berkualitas • Siap Kirim — Pesan langsung lewat WhatsApp</p>
+    <div class="lang-switch">
+      <button onclick="setLang('id')">🇮🇩 Indonesia</button>
+      <button onclick="setLang('en')">🇬🇧 English</button>
+    </div>
   </header>
 
   <main class="container" role="main">
     <section class="grid" id="products" aria-label="Daftar Produk">
-      <!-- Product: edit status stok (Tersedia/Habis) dengan mengubah teks / badge -->
       <article class="card">
         <img class="media" src="images/kelapa.jpg" alt="Kelapa">
         <div class="body">
-          <h3>Kelapa</h3>
-          <div class="meta">kelapa santan</div>
+          <h3 id="kelapa-title">Kelapa</h3>
+          <div class="meta" id="kelapa-meta">Kelapa santan</div>
           <div class="btn-row">
-            <a class="btn-wa" href="https://wa.me/6282229149123?text=Halo%2C%20saya%20mau%20pesan%20Kelapa" target="_blank" rel="noopener">Pesan via WA</a>
-            <span class="badge" aria-hidden="true">Tersedia</span>
+            <a class="btn-wa" id="kelapa-btn" href="#" target="_blank" rel="noopener">Pesan via WA</a>
+            <span class="badge" id="kelapa-stock">Tersedia</span>
           </div>
         </div>
       </article>
@@ -66,11 +66,11 @@
       <article class="card">
         <img class="media" src="images/kayu manis.jpg" alt="Kayu Manis">
         <div class="body">
-          <h3>Kayu Manis</h3>
-          <div class="meta">Aroma manis, cocok untuk kue & minuman.</div>
+          <h3 id="kayu-title">Kayu Manis</h3>
+          <div class="meta" id="kayu-meta">Aroma manis, cocok untuk kue & minuman.</div>
           <div class="btn-row">
-            <a class="btn-wa" href="https://wa.me/6282229149123?text=Halo%2C%20saya%20mau%20pesan%20Kayu%20Manis" target="_blank" rel="noopener">Pesan via WA</a>
-            <span class="badge">Tersedia</span>
+            <a class="btn-wa" id="kayu-btn" href="#" target="_blank" rel="noopener">Pesan via WA</a>
+            <span class="badge" id="kayu-stock">Tersedia</span>
           </div>
         </div>
       </article>
@@ -78,47 +78,99 @@
       <article class="card">
         <img class="media" src="images/cengkeh.jpg" alt="Cengkeh">
         <div class="body">
-          <h3>Cengkeh</h3>
-          <div class="meta">Cocok untuk bumbu & minuman herbal.</div>
+          <h3 id="cengkeh-title">Cengkeh</h3>
+          <div class="meta" id="cengkeh-meta">Cocok untuk bumbu & minuman herbal.</div>
           <div class="btn-row">
-            <a class="btn-wa" href="https://wa.me/6282229149123?text=Halo%2C%20saya%20mau%20pesan%20Cengkeh" target="_blank" rel="noopener">Pesan via WA</a>
-            <span class="badge">Tersedia</span>
+            <a class="btn-wa" id="cengkeh-btn" href="#" target="_blank" rel="noopener">Pesan via WA</a>
+            <span class="badge" id="cengkeh-stock">Tersedia</span>
           </div>
         </div>
       </article>
 
       <article class="card">
-        <img class="media" src="images/pala.jpg" alt="pala">
+        <img class="media" src="images/pala.jpg" alt="Pala">
         <div class="body">
-          <h3>Pala</h3>
-          <div class="meta">Wangi khas — sering dipakai pada minuman hangat.</div>
+          <h3 id="pala-title">Pala</h3>
+          <div class="meta" id="pala-meta">Wangi khas — sering dipakai pada minuman hangat.</div>
           <div class="btn-row">
-            <a class="btn-wa" href="https://wa.me/6282229149123?text=Halo%2C%20saya%20mau%20pesan%20Pala" target="_blank" rel="noopener">Pesan via WA</a>
-            <span class="badge">Habis</span>
+            <a class="btn-wa" id="pala-btn" href="#" target="_blank" rel="noopener">Pesan via WA</a>
+            <span class="badge" id="pala-stock">Habis</span>
           </div>
         </div>
       </article>
 
       <article class="card">
-        <img class="media" src="images/kemiri.jpg" alt="kemiri">
+        <img class="media" src="images/kemiri.jpg" alt="Kemiri">
         <div class="body">
-          <h3>Kemiri</h3>
-          <div class="meta">Bagus untuk sambal dan bumbu kacang.</div>
+          <h3 id="kemiri-title">Kemiri</h3>
+          <div class="meta" id="kemiri-meta">Bagus untuk sambal dan bumbu kacang.</div>
           <div class="btn-row">
-            <a class="btn-wa" href="https://wa.me/6282229149123?text=Halo%2C%20saya%20mau%20pesan%20Kemiri" target="_blank" rel="noopener">Pesan via WA</a>
-            <span class="badge">Tersedia</span>
+            <a class="btn-wa" id="kemiri-btn" href="#" target="_blank" rel="noopener">Pesan via WA</a>
+            <span class="badge" id="kemiri-stock">Tersedia</span>
           </div>
         </div>
       </article>
-
     </section>
   </main>
 
   <footer role="contentinfo">
-    <div><strong>Toko Rempah Nusantara</strong></div>
-    <div>WA: <a href="https://wa.me/6282229149123" target="_blank" rel="noopener">082229149123</a></div>
-    <div>Alamat: Perumahan Graha Kota D11/3, Sidoarjo, Jawa Timur</div>
+    <div><strong id="footer-title">Toko Rempah Nusantara</strong></div>
+    <div id="footer-wa">WA: <a href="https://wa.me/6282229149123" target="_blank" rel="noopener">082229149123</a></div>
+    <div id="footer-address">Alamat: Perumahan Graha Kota D11/3, Sidoarjo, Jawa Timur</div>
   </footer>
 
+  <script>
+    const phone = "6282229149123";
+    const langData = {
+      id: {
+        title: "🌿 Katalog Rempah Nusantara",
+        subtitle: "Segar • Berkualitas • Siap Kirim — Pesan langsung lewat WhatsApp",
+        products: {
+          kelapa: ["Kelapa","Kelapa santan","Pesan via WA","Tersedia","Halo, saya mau pesan Kelapa"],
+          kayu: ["Kayu Manis","Aroma manis, cocok untuk kue & minuman.","Pesan via WA","Tersedia","Halo, saya mau pesan Kayu Manis"],
+          cengkeh: ["Cengkeh","Cocok untuk bumbu & minuman herbal.","Pesan via WA","Tersedia","Halo, saya mau pesan Cengkeh"],
+          pala: ["Pala","Wangi khas — sering dipakai pada minuman hangat.","Pesan via WA","Habis","Halo, saya mau pesan Pala"],
+          kemiri: ["Kemiri","Bagus untuk sambal dan bumbu kacang.","Pesan via WA","Tersedia","Halo, saya mau pesan Kemiri"]
+        },
+        footerTitle: "Toko Rempah Nusantara",
+        footerWa: "WA: ",
+        footerAddress: "Alamat: Perumahan Graha Kota D11/3, Sidoarjo, Jawa Timur"
+      },
+      en: {
+        title: "🌿 Nusantara Spice Catalog",
+        subtitle: "Fresh • High Quality • Ready to Ship — Order via WhatsApp",
+        products: {
+          kelapa: ["Coconut","Coconut for milk","Order via WA","Available","Hello, I would like to order Coconut"],
+          kayu: ["Cinnamon","Sweet aroma, perfect for cakes & drinks.","Order via WA","Available","Hello, I would like to order Cinnamon"],
+          cengkeh: ["Cloves","Perfect for spices & herbal drinks.","Order via WA","Available","Hello, I would like to order Cloves"],
+          pala: ["Nutmeg","Unique aroma — often used in warm drinks.","Order via WA","Out of stock","Hello, I would like to order Nutmeg"],
+          kemiri: ["Candlenut","Great for sambal and peanut sauces.","Order via WA","Available","Hello, I would like to order Candlenut"]
+        },
+        footerTitle: "Nusantara Spice Store",
+        footerWa: "WhatsApp: ",
+        footerAddress: "Address: Graha Kota D11/3, Sidoarjo, East Java"
+      }
+    };
+
+    function setLang(lang) {
+      document.getElementById("title").innerText = langData[lang].title;
+      document.getElementById("subtitle").innerText = langData[lang].subtitle;
+
+      for (const key of ["kelapa","kayu","cengkeh","pala","kemiri"]) {
+        document.getElementById(key+"-title").innerText = langData[lang].products[key][0];
+        document.getElementById(key+"-meta").innerText = langData[lang].products[key][1];
+        document.getElementById(key+"-btn").innerText = langData[lang].products[key][2];
+        document.getElementById(key+"-stock").innerText = langData[lang].products[key][3];
+        document.getElementById(key+"-btn").href = "https://wa.me/"+phone+"?text="+encodeURIComponent(langData[lang].products[key][4]);
+      }
+
+      document.getElementById("footer-title").innerText = langData[lang].footerTitle;
+      document.getElementById("footer-wa").childNodes[0].nodeValue = langData[lang].footerWa;
+      document.getElementById("footer-address").innerText = langData[lang].footerAddress;
+    }
+
+    // default bahasa Indonesia
+    setLang('id');
+  </script>
 </body>
 </html>
